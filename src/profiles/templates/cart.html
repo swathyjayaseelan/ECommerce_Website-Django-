@@ -1,0 +1,19 @@
+<h1>Cart contents</h1>
+<div>
+  {% if not cartItems %}
+  <p>Cart is empty</p> 
+  {% else %}
+{% for element in cartItems %}
+<form action="{% url 'cart' item='0' %}" method="POST">
+          {% csrf_token %}
+          <h1>{{element.item_name}}</h1>
+          <p><b>Price :</b> {{element.item_price}}</p>
+          <label>Delete item<input type="submit" value={{element.item_id}} name="element.item_id" /></label>
+        </form>
+{% endfor %}
+{% endif %}
+</div>
+<div>
+    <p>Total : {{total}}</p>
+    <p><a class="btn btn-secondary" href="{% url 'checkout' total=total %}" role="button">Buy this »</a></p>
+</div>

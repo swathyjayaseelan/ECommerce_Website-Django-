@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<form action="/" method="POST">
+  {% csrf_token %}
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_0GVwDHqDbbUCVWCTWo88IIVu" # Make sure to wrap the variable name with double {}
+        data-amount= total
+        data-name="EasyBuy"
+        data-description="Buy books"
+        data-image="Link to your logo"
+        data-currency="usd">
+    </script>
+</form>
+{% endblock %}
