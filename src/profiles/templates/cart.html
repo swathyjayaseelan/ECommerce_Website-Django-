@@ -1,19 +1,30 @@
-<h1>Cart contents</h1>
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-3">
+<h1>Cart Contents</h1><br/>  
 <div>
   {% if not cartItems %}
-  <p>Cart is empty</p> 
+  <p>Cart is empty</p>
   {% else %}
 {% for element in cartItems %}
 <form action="{% url 'cart' item='0' %}" method="POST">
           {% csrf_token %}
-          <h1>{{element.item_name}}</h1>
+          <p><b>Book name:</b> {{element.item_name}}</p>
+          <input type="hidden" name="element.item_name" value="{{ element.item_name }}">
           <p><b>Price :</b> {{element.item_price}}</p>
-          <label>Delete item<input type="submit" value={{element.item_id}} name="element.item_id" /></label>
-        </form>
+          <input type="hidden" name="element.item_price" value="{{ element.item_price }}">
+          <input type="hidden" name="element.id" value="{{element.id}}">
+
+          <input type="submit" value="Delete" /></form><br/>
 {% endfor %}
 {% endif %}
 </div>
 <div>
-    <p>Total : {{total}}</p>
-    <p><a class="btn btn-secondary" href="{% url 'checkout' total=total %}" role="button">Buy this »</a></p>
+    <h3>Total : {{total}}</h3>
+    <p><a class="btn btn-success" href="{% url 'checkout' total=total %}" role="button">Buy »</a></p>
+
 </div>
+</div>
+</div>
+{% endblock %}

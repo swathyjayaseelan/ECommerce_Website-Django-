@@ -5,11 +5,11 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
   <link href="{% static 'css/main.css' %}" rel="stylesheet">
 <div class="jumbotron">
-  <h2>Buy books at a low price!</h2>
+  <h2>Good Quality! Low price ! </h2>
   {% if request.user.is_authenticated %}
-  <h3>Hello {{user.username}}</h3>
+  <h3 style="color: #0080ff;"><i>Hello {{user.username}}</i></h3>
   {% else %}
-  <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
+<h3 style="color: #0080ff;"><i>Please login to buy books</i></h3>
   {% endif %}
 </div>
 {% endblock %}
@@ -18,10 +18,11 @@
 <div class="row">
   {% for element in localDic %}
           <div class="col-md-4" style="text-align: center">
-            <h1>{{element.name}}</h1>
-            <img style = "max-width: 50%;margin: 0 auto;" class="img-responsive" src="{% static 'img/softwarereq.jpg' %}"></img>
-            <p><b>Price :</b> {{element.price}}</p>
-            <p><a class="btn btn-secondary" href="{% url 'cart' item=element.id  %}" role="button">Buy this »</a></p>
+            <p>{{element.name}}</p>
+            <img style = "max-width: 50%;margin: 0 auto;" class="img-responsive" src="{% static "" %}/img/{{element.img}}"></img>
+            <p><b>ISBN :</b> {{element.isbn}}</p>
+            <p><b>Price :</b> ${{element.price}}</p>
+            <p><a class="btn btn-secondary" href="{% url 'cart' item=element.id  %}" role="button">Add to cart +</a></p>
           </div>
   {% endfor %}
 </div>

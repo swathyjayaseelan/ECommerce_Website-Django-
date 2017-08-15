@@ -1,7 +1,8 @@
-h1 {
-  color: red;
+
+body {
+  background-color: lightgray;
 }
-img {
-  width: 50%;
-  height: 50%;
+.navbar-default {
+    background-color: lightblue;
+    
 }

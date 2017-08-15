@@ -6,18 +6,36 @@ from .models import profile,userStripe,order
 # Create your views here.
 
 listDict = [
-{'name': 'SRS',
+{'name': 'Software Requirements',
 'price': 20,
+'isbn': '1234',
+'img': 'softwarereq.jpg',
 'id': '1'},
-{'name':'qqq',
+{'name':'Python: The Complete Reference by Martin C Brown',
 'price': 40,
+'isbn': '9780072127188',
+'img':  'python.jpg',
 'id':'2'},
-{'name':'xxx',
-'price': 40,
+{'name':'Pro JavaScript Techniques by John Resig',
+'price': 11,
+'img': 'javascript.gif',
+'isbn': ' 978-1590597279',
 'id':'3'},
-{'name': 'werr',
+{'name': 'Python Machine Learning',
+'price': 30,
+'isbn': '1783555130',
+'img': 'machine.png',
+'id':'4'},
+{'name': 'ReactJS',
+'price': 39,
+'isbn': '1783555130',
+'img': 'react.png',
+'id':'4'},
+{'name': 'Full Stack Development with MEAN',
 'price': 50,
-'id':'4'}
+'isbn': '1783555130',
+'img': 'mean.jpg',
+'id':'4'},
 ]
 
 def home(request):
@@ -49,8 +67,8 @@ def history(request):
 def cart(request,item='1'):
     user = profile.objects.get(user=request.user)
     if request.method == 'POST':
-        id = request.POST['element.item_id']
-        order.objects.filter(item_id = id, client=user).delete()
+        deleteid = request.POST['element.id']
+        order.objects.filter(id = deleteid, client=user).delete()
     total =0
     cartItems = []
     for element in listDict:
