@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.conf import settings
+from profiles.models import profile,userStripe,order
+# Create your views here.
 import stripe
 stripe.api_key = "sk_test_KGb17EJmeW1nyHnkCkAVcHCI"
 
@@ -13,6 +15,8 @@ stripe.api_key = "sk_test_KGb17EJmeW1nyHnkCkAVcHCI"
 def checkout(request,total='1'):
     customer_id = request.user.userstripe.stripe_id
     total = total
+    user = profile.objects.get(user=request.user)
+    order.objects.filter(client=user).delete()
     if request.method == 'POST':
         token = request.POST['stripeToken']
         try:
